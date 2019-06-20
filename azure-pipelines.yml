@@ -26,9 +26,8 @@ steps:
     targetType: 'inline'
     script: 'set x=$(git rev-parse --short=8 HEAD)
       buildnumber=${BUILDNUMBER}.1.$x
-      echo ${buildnumber}>>readme.txt
-      cat readme.txt'
+      echo ${buildnumber}>>readme.txt'
   displayName: 'update build number'
 
-- script: cat readme.txt
+- script: echo ${buildnumber}
   displayName: 'view readme.txt'
