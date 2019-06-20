@@ -52,10 +52,10 @@ steps:
       EOF
   displayName: 'create docker image'
 
-- script: 'ls -ltr'
+- script: 'cat readme.txt'
   displayName: 'checking files'
 
-- script: 'docker image ls'
+- script: 'cat dockerfile'
   displayName: 'checking docker images'
  
 
