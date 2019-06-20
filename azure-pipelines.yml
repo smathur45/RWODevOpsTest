@@ -25,9 +25,10 @@ steps:
 - task: CmdLine@2
   inputs:
     script: |
-      set x=$(git rev-parse --short=8 HEAD)
-      buildnumber=${Build.BuildNumber}.1.$x
-      echo ${buildnumber}>>readme.txt
+      x=$(git rev-parse --short=8 HEAD)
+      echo $x
+      buildnumber=$(Build.BuildNumber).1.$x
+      echo $(buildnumber)>>readme.txt
   displayName: 'update buildnumber'
 
 - task: DockerInstaller@0
