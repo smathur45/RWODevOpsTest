@@ -22,7 +22,8 @@ steps:
   displayName: 'Compile code'
  
 - script: |
-    x=$(git rev-parse --short=5 HEAD)
-    buildnumber=${BUILDNUMBER}.1.$x
-    echo ${buildnumber}>>readme.txt
+    'x=$(git rev-parse --short=5 HEAD)'
+    'buildnumber=${BUILDNUMBER}.1.$x'
+    'echo ${buildnumber}>>readme.txt'
+    'cat readme.txt'
   displayName: 'update build number'
