@@ -10,7 +10,7 @@ pool:
   vmImage: "ubuntu-16.04"
 
 steps:
-- script:  libboost-all-dev
+- script:  sudo apt-get install libboost-all-dev
   displayName: 'dependency' 
 
 - task: CmdLine@2
