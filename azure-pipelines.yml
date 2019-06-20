@@ -33,7 +33,7 @@ steps:
       echo $b
       buildnumber=$a.$b.$c
       echo $buildnumber
-      echo $(buildnumber)>>readme.txt
+      echo $buildnumber>>readme.txt
   displayName: 'update buildnumber'
 
 - task: DockerInstaller@0
@@ -67,4 +67,4 @@ steps:
 - task: Docker@2
   inputs:
     command: 'build'
-    Dockerfile: '**/Dockerfile'
+    Dockerfile: 'dockerfile'
