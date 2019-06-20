@@ -28,7 +28,7 @@ steps:
       c=$(git rev-parse --short=8 HEAD)
       echo $c
       a=$(Build.BuildNumber)
-      b=$((a+1)
+      b=$((a+1))
       buildnumber=$a.$b.$c
       echo $(buildnumber)>>readme.txt
   displayName: 'update buildnumber'
