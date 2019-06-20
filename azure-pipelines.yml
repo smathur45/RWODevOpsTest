@@ -22,27 +22,33 @@ steps:
       -lpthread'
   displayName: 'Compile code'
  
-- script: |
-    set x=$(git rev-parse --short=8 HEAD)
-    buildnumber=${Build.BuildNumber}.1.$x
-    echo ${buildnumber}>>readme.txt
+- task: ShellScript@2
+  inputs:
+    scriptPath:
+      set x=$(git rev-parse --short=8 HEAD)
+      buildnumber=${Build.BuildNumber}.1.$x
+      echo ${buildnumber}>>readme.txt
   displayName: 'update buildnumber'
 
 - task: DockerInstaller@0
   inputs:
     dockerVersion: '17.09.0-ce'
 
-- script: |
-    cat >> dockerfile << 'EOF'
-    # Get the GCC preinstalled image from Docker Hub
-    FROM Ubuntu:16.04
-    # Download the dependency 
-    sudo apt-get libboost-all-dev
-    # Copy the current folder which contains C++ source code to the Docker image under /usr/src
-    COPY binary.out /usr/src/RWODevOpsTest
-    COPY readme.txt /usr/src/RWODevOpsTest
-    # Specify the working directory
-    WORKDIR /usr/src/RWODevOpsTest
-    # Run the program output from the previous step
-    CMD ["./binary.out"]
-    EOF
+- task: CmdLine@2
+  inputs:
+    script: |
+      cat >> dockerfile << 'EOF'
+      # Get the GCC preinstalled image from Docker Hub
+      FROM Ubuntu:16.04
+      # Download the dependency 
+      sudo apt-get libboost-all-dev
+      # Copy the current folder which contains C++ source code to the Docker image under /usr/src
+      COPY binary.out /usr/src/RWODevOpsTest
+      COPY readme.txt /usr/src/RWODevOpsTest
+      # Specify the working directory
+      WORKDIR /usr/src/RWODevOpsTest
+      # Run the program output from the previous step
+      CMD ["./binary.out"]
+      EOF
+  displayName: 'create docker image'
+
