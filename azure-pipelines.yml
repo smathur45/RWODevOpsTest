@@ -22,13 +22,11 @@ steps:
       -lpthread'
   displayName: 'Compile code'
  
-- task: Bash@3
-  inputs:
-    targetType: 'inline'
-    script: 'set x=$(git rev-parse --short=8 HEAD)
-      buildnumber=${BUILD_NUMBER}.1.$x
-      echo ${buildnumber}>>readme.txt'
-  displayName: 'update build number'
+- script: |
+    set x=$(git rev-parse --short=8 HEAD)
+    buildnumber=${BUILD_NUMBER}.1.$x
+    echo ${buildnumber}>>readme.txt
+  displayName: 'update buildnumber'
 
 - script: echo ${buildnumber}
   displayName: 'view readme.txt'
