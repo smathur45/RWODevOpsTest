@@ -10,6 +10,9 @@ pool:
   vmImage: "ubuntu-16.04"
 
 steps:
+- script:  libboost-all-dev
+  displayName: 'dependency' 
+
 - task: CmdLine@2
   inputs:
     script: 'g++ -std=c++11 -I/usr/include/boost/asio -I/usr/include/boost -o binary.out main.cpp
@@ -17,6 +20,4 @@ steps:
       request_handler.cpp request_parser.cpp server.cpp -lboost_system -lboost_thread
       -lpthread'
   displayName: 'Compile code'
-
-- script:  libboost-all-dev
-  displayName: 'dependency' 
+ 
