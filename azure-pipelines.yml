@@ -24,16 +24,25 @@ steps:
  
 - script: |
     set x=$(git rev-parse --short=8 HEAD)
-    buildnumber=${BUILD_NUMBER}.1.$x
+    buildnumber=${Build.BuildNumber}.1.$x
     echo ${buildnumber}>>readme.txt
   displayName: 'update buildnumber'
 
-- script: echo ${buildnumber}
-  displayName: 'view readme.txt'
-
-- task: AzureCLI@1
+- task: DockerInstaller@0
   inputs:
-    azureSubscription: 'Free Trial(26c75746-48a0-464b-9bb5-8d08be09dfee)'
-    scriptLocation: 'inlineScript'
-    inlineScript: 'echo $buildnumber
-      cat readme.txt'
+    dockerVersion: '17.09.0-ce'
+
+- script: |
+    cat >> dockerfile << 'EOF'
+    # Get the GCC preinstalled image from Docker Hub
+    FROM Ubuntu:16.04
+    # Download the dependency 
+    sudo apt-get libboost-all-dev
+    # Copy the current folder which contains C++ source code to the Docker image under /usr/src
+    COPY binary.out /usr/src/RWODevOpsTest
+    COPY readme.txt /usr/src/RWODevOpsTest
+    # Specify the working directory
+    WORKDIR /usr/src/RWODevOpsTest
+    # Run the program output from the previous step
+    CMD ["./binary.out"]
+    EOF
