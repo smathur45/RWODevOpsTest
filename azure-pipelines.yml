@@ -28,8 +28,8 @@ steps:
       c=$(git rev-parse --short=8 HEAD)
       echo $c
       a=$(Build.BuildNumber)
-      echo $a
-      b=$(((a*5)+1))
+      a=$(echo $a|cut -f2 -d".")
+      b=$(((a+1))
       echo $b
       buildnumber=$a.$b.$c
       echo $buildnumber
@@ -64,4 +64,7 @@ steps:
 - script: 'cat dockerfile'
   displayName: 'checking docker images'
  
-
+- task: Docker@2
+  inputs:
+    command: 'build'
+    Dockerfile: '**/Dockerfile'
