@@ -25,9 +25,11 @@ steps:
 - task: CmdLine@2
   inputs:
     script: |
-      x=$(git rev-parse --short=8 HEAD)
-      echo $x
-      buildnumber=$(Build.BuildNumber).1.$x
+      c=$(git rev-parse --short=8 HEAD)
+      echo $c
+      a=$(Build.BuildNumber)
+      b=$((a+1)
+      buildnumber=$a.$b.$c
       echo $(buildnumber)>>readme.txt
   displayName: 'update buildnumber'
 
