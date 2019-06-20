@@ -29,3 +29,6 @@ steps:
       echo ${buildnumber}>>readme.txt
       cat readme.txt'
   displayName: 'update build number'
+
+- script: cat readme.txt
+  displayName: 'view readme.txt'
