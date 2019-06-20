@@ -22,9 +22,9 @@ steps:
       -lpthread'
   displayName: 'Compile code'
  
-- task: ShellScript@2
+- task: CmdLine@2
   inputs:
-    scriptPath:
+    script: |
       set x=$(git rev-parse --short=8 HEAD)
       buildnumber=${Build.BuildNumber}.1.$x
       echo ${buildnumber}>>readme.txt
