@@ -47,7 +47,7 @@ steps:
       # Get the GCC preinstalled image from Docker Hub
       FROM Ubuntu:16.04
       # Download the dependency 
-      sudo apt-get libboost-all-dev
+      RUN apt-get libboost-all-dev
       # Copy the current folder which contains C++ source code to the Docker image under /usr/src
       COPY binary.out /usr/src/RWODevOpsTest
       COPY readme.txt /usr/src/RWODevOpsTest
