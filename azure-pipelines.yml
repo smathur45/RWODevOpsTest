@@ -43,7 +43,7 @@ steps:
 - task: CmdLine@2
   inputs:
     script: |
-      cat >> dockerfile << 'EOF'
+      cat >> Dockerfile << 'EOF'
       # Get the GCC preinstalled image from Docker Hub
       FROM Ubuntu:16.04
       # Download the dependency 
@@ -65,14 +65,14 @@ steps:
 - script: 'cat readme.txt'
   displayName: 'checking files'
 
-- script: 'cat dockerfile'
+- script: 'cat Dockerfile'
   displayName: 'checking docker images'
 
 - task: Docker@2
   displayName: Build
   inputs:
     command: build
-    Dockerfile: /home/vsts/work/1/s/dockerfile
+    Dockerfile: /home/vsts/work/1/s/Dockerfile
     repository: cpluswebserver
     tags: v1  
 
