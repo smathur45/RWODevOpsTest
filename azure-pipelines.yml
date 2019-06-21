@@ -7,15 +7,19 @@
 trigger:
 - master
 
+
+
 pool:
   vmImage: "ubuntu-16.04"
 
-variables:
-  tag: '$(buildnumber)'
+
+
 
 steps:
 - script:  sudo apt-get install libboost-all-dev
   displayName: 'dependency' 
+
+
 
 - task: CmdLine@2
   inputs:
@@ -24,6 +28,8 @@ steps:
       request_handler.cpp request_parser.cpp server.cpp -lboost_system -lboost_thread
       -lpthread'
   displayName: 'Compile code'
+
+
 
 - task: CmdLine@2
   inputs:
@@ -39,9 +45,13 @@ steps:
       echo $buildnumber>>readme.txt
   displayName: 'update buildnumber'
 
+
+
 - task: DockerInstaller@0
   inputs:
     dockerVersion: '17.09.0-ce'
+
+
 
 - task: CmdLine@2
   inputs:
@@ -62,15 +72,7 @@ steps:
       EOF
   displayName: 'create docker image'
 
-- script: 'ls -lthr'
-  displayName: 'checking files'
-- script: 'pwd'
-  displayName: 'checking files'
-- script: 'cat readme.txt'
-  displayName: 'checking files'
 
-- script: 'cat Dockerfile'
-  displayName: 'checking docker images'
 
 - task: Docker@2
   displayName:  Docker Image Build
@@ -81,9 +83,13 @@ steps:
     tags: |
       $(tag)
 
-- script: 'docker build -t vivek151194/cpluswebserver:v1 .'
+
+
+- script: 'docker build -t cpluswebserver:v1 .'
   displayName: 'creating docker image by script'
   
+
+
 - script: 'docker image ls'
   displayName: 'checking docker images' 
 
