@@ -68,6 +68,8 @@ steps:
   displayName: Build
   inputs:
     command: build
-    containerRegistry: vivek151194
     repository: cpluswebserver
     tags: v1 
+
+- script: 'docker image ls'
+  displayName: 'checking docker images'
