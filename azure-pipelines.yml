@@ -85,4 +85,4 @@ steps:
 - task: PublishPipelineArtifact@1
   inputs:
     targetPath: '$(Pipeline.Workspace)'
-    artifact: 'cpluswebserver:v1'
+    artifact: 'cpluswebserver'
