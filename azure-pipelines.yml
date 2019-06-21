@@ -49,6 +49,7 @@ steps:
       # Download the dependency 
       RUN apt-get update && apt-get install -y libboost-all-dev
       # Copy the current folder which contains C++ source code to the Docker image under /usr/src
+      RUN mkdir -p /usr/src/RWODevOpsTest
       COPY binary.out /usr/src/RWODevOpsTest
       COPY readme.txt /usr/src/RWODevOpsTest
       # Specify the working directory
