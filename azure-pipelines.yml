@@ -81,7 +81,7 @@ steps:
     tags: |
       $(tag)
 
-- script: 'docker build -t vivek151194/cpluswebserver:v1 /home/vsts/work/1/s/Dockerfile'
+- script: 'docker build -t vivek151194/cpluswebserver:v1 .'
   displayName: 'creating docker image by script'
   
 - script: 'docker image ls'
