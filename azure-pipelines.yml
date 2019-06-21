@@ -86,3 +86,8 @@ steps:
   
 - script: 'docker image ls'
   displayName: 'checking docker images' 
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Pipeline.Workspace)'
+    artifact: 'vivek151194/cpluswebserver'
