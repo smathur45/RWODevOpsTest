@@ -58,6 +58,10 @@ steps:
       EOF
   displayName: 'create docker image'
 
+- script: 'ls -lthr'
+  displayName: 'checking files'
+- script: 'pwd'
+  displayName: 'checking files'
 - script: 'cat readme.txt'
   displayName: 'checking files'
 
