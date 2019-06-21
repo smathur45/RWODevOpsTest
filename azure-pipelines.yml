@@ -72,8 +72,9 @@ steps:
   displayName: Build
   inputs:
     command: build
+    Dockerfile: /home/vsts/work/1/s/dockerfile
     repository: cpluswebserver
-    tags: v1 
+    tags: v1  
 
 - script: 'docker image ls'
   displayName: 'checking docker images'
