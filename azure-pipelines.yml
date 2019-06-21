@@ -63,8 +63,11 @@ steps:
 
 - script: 'cat dockerfile'
   displayName: 'checking docker images'
- 
+
 - task: Docker@2
+  displayName: Build
   inputs:
-    command: 'build'
-    Dockerfile: 'dockerfile'
+    command: build
+    containerRegistry: vivek151194
+    repository: cpluswebserver
+    tags: v1 
