@@ -37,6 +37,7 @@ steps:
     script: |
       c=$(git rev-parse --short=8 HEAD)
       echo $c
+      echo $(Build.BuildId)
       a=$(Build.BuildNumber)
       a=$(echo $a|cut -f2 -d".")
       b=$((a+1))
