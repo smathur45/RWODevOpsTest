@@ -75,31 +75,17 @@ steps:
   displayName: 'create docker image'
 
 
-- script: 'docker build -t cpluswebserver:v1 .'
-  displayName: 'creating docker image by script'
-  
-
-
-- script: 'docker image ls'
-  displayName: 'checking docker images' 
-
 - task: ArchiveFiles@2
   inputs:
     rootFolderOrFile: '$(Pipeline.Workspace)'
     includeRootFolder: true
     archiveType: 'zip'
-    archiveFile: 'cpluswebserver.zip'
+    archiveFile: 'cpluswebserver'
     replaceExistingArchive: true
-
-- task: CopyFiles@2
-  inputs:
-    SourceFolder: '/home/vsts/work/1/s/'
-    Contents: '*.zip'
-    TargetFolder: '$(Pipeline.Workspace)/zip'
     
 
 - task: PublishPipelineArtifact@1
   inputs:
     targetPath: '/home/vsts/work/1/s/'
-    artifact: 'zip'
+    artifact: 'cpluswebserver'
 
