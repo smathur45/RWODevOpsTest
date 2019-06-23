@@ -94,7 +94,7 @@ steps:
   inputs:
     SourceFolder: '/home/vsts/work/1/s/'
     Contents: '*.zip'
-    TargetFolder: '$(Pipeline.Workspace)'
+    TargetFolder: '$(Pipeline.Workspace)/zip'
     
 
 - task: PublishPipelineArtifact@1
