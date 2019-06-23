@@ -1,5 +1,6 @@
 # Starter pipeline
 
+
 # Start with a minimal pipeline that you can customize to build and deploy your code.
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
@@ -88,6 +89,13 @@ steps:
     archiveType: 'zip'
     archiveFile: 'cpluswebserver.zip'
     replaceExistingArchive: true
+
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '$(Build.BinariesDirectory)'
+    Contents: '*.zip'
+    TargetFolder: '$(Pipeline.Workspace)'
+    
 
 - task: PublishPipelineArtifact@1
   inputs:
