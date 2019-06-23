@@ -47,7 +47,6 @@ steps:
       echo $buildnumber>>readme.txt
   displayName: 'update buildnumber'
 
-steps:
 - script:  cat readme.txt
   displayName: 'readme.txt display' 
 
