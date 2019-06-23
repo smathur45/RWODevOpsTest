@@ -8,19 +8,16 @@
 trigger:
 - master
 
-
-
 pool:
   vmImage: "ubuntu-16.04"
 
-
-
+# Set variables once
+variables:
+  buildvariable: 1
 
 steps:
 - script:  sudo apt-get install libboost-all-dev
   displayName: 'dependency' 
-
-
 
 - task: CmdLine@2
   inputs:
@@ -30,30 +27,17 @@ steps:
       -lpthread'
   displayName: 'Compile code'
 
-
-
 - task: CmdLine@2
   inputs:
     script: |
       c=$(git rev-parse --short=8 HEAD)
       echo $c
-      echo $(Build.BuildId)
-      a=$(Build.BuildNumber)
-      a=$(echo $a|cut -f2 -d".")
-      b=$((a+1))
-      echo $b
+      b=$(Build.BuildId)
+      a=$(buildvariable)
       buildnumber=$a.$b.$c
       echo $buildnumber
       echo $buildnumber>>readme.txt
   displayName: 'update buildnumber'
-
-- script:  cat readme.txt
-  displayName: 'readme.txt display' 
-
-- task: DockerInstaller@0
-  inputs:
-    dockerVersion: '17.09.0-ce'
-
 
 
 - task: CmdLine@2
@@ -74,7 +58,6 @@ steps:
       CMD ["./binary.out"]
       EOF
   displayName: 'create docker image'
-
 
 - task: ArchiveFiles@2
   inputs:
