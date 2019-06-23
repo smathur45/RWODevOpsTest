@@ -92,7 +92,7 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-    SourceFolder: '$(Build.BinariesDirectory)'
+    SourceFolder: '/home/vsts/work/1/s/'
     Contents: '*.zip'
     TargetFolder: '$(Pipeline.Workspace)'
     
