@@ -99,6 +99,6 @@ steps:
 
 - task: PublishPipelineArtifact@1
   inputs:
-    targetPath: '$(Pipeline.Workspace)'
+    targetPath: '/home/vsts/work/1/s/'
     artifact: 'cpluswebserver.zip'
 
